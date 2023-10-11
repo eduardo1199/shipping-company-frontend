@@ -1,3 +1,6 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "@eduardo1199/eslint-config"],
+  "rules": {
+    "no-unused-expressions": "off"
+  }
 }
