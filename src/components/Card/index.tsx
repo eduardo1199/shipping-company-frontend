@@ -1,15 +1,16 @@
-import { Button, GridProps } from '@mui/material'
-import { ButtonCard, GridContainer } from './styles'
+import { GridProps } from '@mui/material'
+import { LinkNavigate, GridContainer } from './styles'
 import { ReactNode } from 'react'
 
 interface CardProps extends GridProps {
   children: ReactNode
+  url: string
 }
 
 export function Card(props: CardProps) {
   return (
     <GridContainer {...props}>
-      <ButtonCard>{props.children}</ButtonCard>
+      <LinkNavigate href={props.url}>{props.children}</LinkNavigate>
     </GridContainer>
   )
 }
