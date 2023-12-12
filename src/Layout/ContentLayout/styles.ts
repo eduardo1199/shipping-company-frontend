@@ -13,7 +13,9 @@ export const Content = styled.div`
   background: #111827;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+
+  padding: 2rem;
 
   height: 100vh;
 `
