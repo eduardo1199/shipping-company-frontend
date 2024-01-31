@@ -1,16 +1,7 @@
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '@mui/material'
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { ContentLayout } from 'Layout/ContentLayout'
 import { TableContainer } from './styles'
-import { InputComponent } from 'components/Input'
 import { FilterBar } from 'components/FilterBar'
-import { PrimaryButton } from 'components/Button/styles'
 
 function createData(
   name: string,
@@ -32,10 +23,10 @@ const rows = [
 export default function Client() {
   return (
     <ContentLayout>
-      <FilterBar>
-        <InputComponent placeholder="Pesquisar" />
-        <PrimaryButton>Cadastrar</PrimaryButton>
-      </FilterBar>
+      <FilterBar.Root>
+        <FilterBar.Filter urlReturn={'/dashboard'} />
+        <FilterBar.ButtonRegister />
+      </FilterBar.Root>
       <TableContainer>
         <Table>
           <TableHead>

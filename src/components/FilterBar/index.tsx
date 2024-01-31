@@ -1,10 +1,18 @@
 import { ReactNode } from 'react'
 import { Container } from './styles'
+import { FilterForm } from './FilterForm'
+import { FilterAction } from './FilterAction'
 
-interface FilterBarProps {
+interface FilterContainerProps {
   children: ReactNode
 }
 
-export function FilterBar({ children }: FilterBarProps) {
+export function FilterContainer({ children }: FilterContainerProps) {
   return <Container>{children}</Container>
+}
+
+export const FilterBar = {
+  Root: FilterContainer,
+  Filter: FilterForm,
+  ButtonRegister: FilterAction,
 }
