@@ -6,7 +6,7 @@ export const Input = styled(InputMaterial)`
 
   color: white;
   background: #1a202c;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 
   padding: 0.5rem;
   outline: none;
