@@ -10,6 +10,7 @@ import {
   AirlineSeatReclineExtra,
   DirectionsCar,
   Route,
+  ShoppingCart,
 } from '@mui/icons-material'
 import { authOptions } from '../api/auth/[...nextauth].api'
 import { ContentLayout } from 'Layout/ContentLayout'
@@ -40,6 +41,12 @@ export default function Dashboard() {
           <CardBox>
             <DirectionsCar />
             <Typography>Veículo</Typography>
+          </CardBox>
+        </Card>
+        <Card item xs={12} sm={12} md={6} url="/vehicle">
+          <CardBox>
+            <ShoppingCart />
+            <Typography>Produtos</Typography>
           </CardBox>
         </Card>
       </GridContainer>

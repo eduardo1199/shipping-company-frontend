@@ -1,50 +1,41 @@
-import {
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-} from '@mui/material'
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import { ContentLayout } from 'Layout/ContentLayout'
 import { TableContainer } from './styles'
-import { InputComponent } from 'components/Input'
 import { FilterBar } from 'components/FilterBar'
 
 function createData(
   name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number,
+  email: string,
+  avatar_url: string,
+  create_at: Date,
 ) {
-  return { name, calories, fat, carbs, protein }
+  return { name, email, avatar_url, create_at }
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData('Frozen yoghurt', 'fake@gmail.com', '', new Date()),
+  createData('Ice cream sandwich', 'fake@gmail.com', '', new Date()),
+  createData('Eclair', 'fake@gmail.com', '', new Date()),
+  createData('Cupcake', 'fake@gmail.com', '', new Date()),
+  createData('Gingerbread', 'fake@gmail.com', '', new Date()),
 ]
 
 export default function Client() {
   return (
     <ContentLayout>
-      <FilterBar>
-        <InputComponent placeholder="Pesquisar" />
-        <Button>Cadastrar</Button>
-      </FilterBar>
+      <FilterBar.Root>
+        <FilterBar.Filter urlReturn={'/dashboard'} />
+        <FilterBar.ButtonRegister />
+      </FilterBar.Root>
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat&nbsp;(g)</TableCell>
-              <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-              <TableCell align="right">Protein&nbsp;(g)</TableCell>
+              <TableCell>Nome</TableCell>
+              <TableCell align="right">Foto</TableCell>
+              <TableCell align="right">Email</TableCell>
+              <TableCell align="right">Data de cadastro</TableCell>
+              <TableCell align="right" />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -56,10 +47,12 @@ export default function Client() {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.protein}</TableCell>
+                <TableCell align="right">{row.avatar_url}</TableCell>
+                <TableCell align="right">{row.email}</TableCell>
+                <TableCell align="right">
+                  {row.create_at.toDateString()}
+                </TableCell>
+                <TableCell align="right" />
               </TableRow>
             ))}
           </TableBody>
