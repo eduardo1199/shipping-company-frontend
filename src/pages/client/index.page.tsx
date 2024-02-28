@@ -1,7 +1,19 @@
-import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
+import {
+  Grid,
+  Pagination,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from '@mui/material'
 import { ContentLayout } from 'Layout/ContentLayout'
-import { TableContainer } from './styles'
+import { StyledPagination, TableContainer } from './styles'
 import { FilterBar } from 'components/FilterBar'
+import { getServerSession } from 'next-auth'
+import { GetServerSidePropsContext } from 'next'
+import { authOptions } from 'pages/api/auth/[...nextauth].api'
+import { ChangeEvent, useState } from 'react'
 
 function createData(
   name: string,
@@ -21,6 +33,12 @@ const rows = [
 ]
 
 export default function Client() {
+  const [page, setPage] = useState(1)
+
+  function handleChangePage(event: ChangeEvent<unknown>, value: number) {
+    setPage(value)
+  }
+
   return (
     <ContentLayout>
       <FilterBar.Root>
@@ -58,6 +76,33 @@ export default function Client() {
           </TableBody>
         </Table>
       </TableContainer>
+      <Grid container marginTop={4} justifyContent="center">
+        <StyledPagination
+          count={10}
+          variant="outlined"
+          onChange={handleChangePage}
+          page={page}
+        />
+      </Grid>
     </ContentLayout>
   )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getServerSession(context.req, context.res, authOptions)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
+
+  // TODO: get request client in server side
+
+  return {
+    props: {},
+  }
 }
